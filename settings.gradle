@@ -1,0 +1,2 @@
+include ':app', ':songsprovider'
+rootProject.name='Shuffle Songs'
