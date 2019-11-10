@@ -4,14 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dev.neymoura.android.songsprovider.commons.Resource
 import dev.neymoura.android.songsprovider.model.MusicalData
 import dev.neymoura.android.songsprovider.usecase.SongsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
-private const val DEFAULT_LIMIT = 5
-private val default_artists: List<Long> = listOf(909253, 1171421960, 358714030, 1419227, 264111789)
 
 class ShuffleViewModel(
     context: Application,
@@ -30,16 +28,16 @@ class ShuffleViewModel(
     fun fetchSongs() {
         CoroutineScope(Dispatchers.IO).launch {
             _loading.postValue(true)
-            fetchSongsCallback(songsUseCase.fetchSongs(default_artists, DEFAULT_LIMIT))
+            fetchSongsCallback(songsUseCase.fetchSongs())
         }
     }
 
-    private fun fetchSongsCallback(songsResult: Result<List<MusicalData>>) {
+    private fun fetchSongsCallback(songsResult: Resource<List<MusicalData>>) {
         when {
             songsResult.isSuccess -> {
                 // TODO: Create UI Model
                 // TODO: Post UI Model on its live data
-                songsResult.getOrDefault(emptyList())
+                songsResult.data
             }
             songsResult.isFailure -> {
                 // TODO: Bind a error message?
