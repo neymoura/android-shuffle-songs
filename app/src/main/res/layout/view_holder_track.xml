@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".presentation.shuffler.view.ShuffleActivity"
-    android:layout_margin="24dp">
+    android:padding="12dp"
+    tools:context=".presentation.shuffler.view.ShuffleActivity">
+
+    <ImageView
+        android:id="@+id/albumImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/trackName"
-        android:layout_width="wrap_content"
+        android:id="@+id/trackTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="House of the Rising Sun"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/trackTitle"
+        app:layout_constraintBottom_toTopOf="@id/trackSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/albumImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="House of the Rising Sun" />
+
+    <TextView
+        android:id="@+id/trackSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/trackSubtitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/albumImage"
+        app:layout_constraintTop_toBottomOf="@id/trackTitle"
+        tools:text="House of the Rising Sun" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Shuffle Songs</string>
+    <string name="track_subtitle">%s (%s)</string>
 </resources>
