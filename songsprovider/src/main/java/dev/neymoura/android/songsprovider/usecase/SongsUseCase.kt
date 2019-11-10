@@ -46,14 +46,21 @@ class SongsUseCase(private val songsRepository: SongsRepository) {
 
                 do {
 
-                    // Select a track with has a different artist from the last track in shuffledTracks
+                    // Select a track which has a different artist id from the last track in shuffledTracks
                     val selectedTrack = tracks.shuffled(random)
-                        .firstOrNull { it.artistId != shuffledTracks.last().artistId }
+                        .firstOrNull { it.artistId != shuffledTracks.last().artistId
+                                || it.artistId != shuffledTracks.first().artistId }
                         ?: continue
 
-                    // Remove the se
                     tracks.remove(selectedTrack)
-                    shuffledTracks.add(selectedTrack)
+
+                    // Remove the selected track and add it to the shuffledList
+                    if (selectedTrack.artistId != shuffledTracks.last().artistId) {
+                        shuffledTracks.add(selectedTrack)
+                    } else {
+                        shuffledTracks.add(0, selectedTrack)
+                    }
+
                 } while (tracks.isNotEmpty())
 
                 return Resource.success(shuffledTracks)

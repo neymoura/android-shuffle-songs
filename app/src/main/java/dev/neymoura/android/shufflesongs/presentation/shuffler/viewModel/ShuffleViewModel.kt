@@ -1,4 +1,4 @@
-package dev.neymoura.android.shufflesongs.viewModel
+package dev.neymoura.android.shufflesongs.presentation.shuffler.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -21,11 +21,10 @@ class ShuffleViewModel(
     val loading: LiveData<Boolean> = _loading
 
     // Songs live data, with backing property
-    private val _songs = MutableLiveData<Any>()
-    val songs: LiveData<Any> = _songs
+    private val _tracks = MutableLiveData<List<MusicalData>>()
+    val tracks: LiveData<List<MusicalData>> = _tracks
 
-    // TODO: Bind something =)
-    fun fetchSongs() {
+    private fun fetchSongs() {
         CoroutineScope(Dispatchers.IO).launch {
             _loading.postValue(true)
             fetchSongsCallback(songsUseCase.fetchSongs())
@@ -37,13 +36,17 @@ class ShuffleViewModel(
             songsResult.isSuccess -> {
                 // TODO: Create UI Model
                 // TODO: Post UI Model on its live data
-                songsResult.data
+                _tracks.postValue(songsResult.data)
             }
             songsResult.isFailure -> {
-                // TODO: Bind a error message?
+                songsResult.error
             }
         }
         _loading.postValue(false)
+    }
+
+    init {
+        fetchSongs()
     }
 
 }

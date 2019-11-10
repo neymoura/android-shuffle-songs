@@ -1,6 +1,6 @@
 package dev.neymoura.android.shufflesongs.modules
 
-import dev.neymoura.android.shufflesongs.viewModel.ShuffleViewModel
+import dev.neymoura.android.shufflesongs.presentation.shuffler.viewModel.ShuffleViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
