@@ -5,4 +5,5 @@
     <color name="windowBackground">#342736</color>
     <color name="trackTitle">#b9656d</color>
     <color name="trackSubtitle">#e2dcdf</color>
+    <color name="progressColor">#ffffff</color>
 </resources>
