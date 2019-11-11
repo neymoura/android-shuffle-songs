@@ -6,4 +6,7 @@
     <color name="trackTitle">#b9656d</color>
     <color name="trackSubtitle">#e2dcdf</color>
     <color name="progressColor">#ffffff</color>
+    <color name="splash_bg_start">#342736</color>
+    <color name="splash_bg_center">#342736</color>
+    <color name="splash_bg_end">#754551</color>
 </resources>

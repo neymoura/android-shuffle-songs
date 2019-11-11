@@ -12,7 +12,6 @@ import dev.neymoura.android.songsprovider.model.MusicalData
 import kotlinx.android.synthetic.main.activity_shuffle.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ShuffleActivity : AppCompatActivity() {
 
     private val viewModel: ShuffleViewModel by viewModel()
@@ -44,4 +43,5 @@ class ShuffleActivity : AppCompatActivity() {
     private fun setTracks(items: List<MusicalData>) {
         tracksAdapter.items = items
     }
+
 }
