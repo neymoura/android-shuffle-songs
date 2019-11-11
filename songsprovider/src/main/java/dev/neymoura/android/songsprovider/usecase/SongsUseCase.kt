@@ -51,8 +51,10 @@ open class SongsUseCase(private val songsRepository: SongsRepository) {
 
                     // Select a track which has a different artist id from the last track in shuffledTracks
                     val selectedTrack = tracks.shuffled(random)
-                        .firstOrNull { it.artistId != shuffledTracks.last().artistId
-                                || it.artistId != shuffledTracks.first().artistId }
+                        .firstOrNull {
+                            it.artistId != shuffledTracks.last().artistId
+                                    || it.artistId != shuffledTracks.first().artistId
+                        }
                         ?: continue
 
                     tracks.remove(selectedTrack)

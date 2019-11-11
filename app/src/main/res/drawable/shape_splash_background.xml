@@ -4,9 +4,9 @@
 
     <gradient
         android:angle="135"
-        android:startColor="@color/splash_bg_end"
         android:centerColor="@color/splash_bg_center"
         android:endColor="@color/splash_bg_start"
-        android:useLevel="true"/>
+        android:startColor="@color/splash_bg_end"
+        android:useLevel="true" />
 
 </shape>

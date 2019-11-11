@@ -1,7 +1,6 @@
 package dev.neymoura.android.shufflesongs.presentation.shuffler.viewModel
 
 import android.app.Application
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +10,6 @@ import dev.neymoura.android.songsprovider.usecase.SongsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.reflect.Modifier.PRIVATE
 
 open class ShuffleViewModel(
     context: Application,

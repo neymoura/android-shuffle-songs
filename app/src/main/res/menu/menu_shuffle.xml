@@ -6,6 +6,6 @@
         android:id="@+id/shuffleAction"
         android:icon="@drawable/ic_shuffle"
         android:title="@string/shuffle_action"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
 </menu>

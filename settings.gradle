@@ -1,2 +1,2 @@
 include ':app', ':songsprovider'
-rootProject.name='Shuffle Songs'
+rootProject.name = 'Shuffle Songs'
