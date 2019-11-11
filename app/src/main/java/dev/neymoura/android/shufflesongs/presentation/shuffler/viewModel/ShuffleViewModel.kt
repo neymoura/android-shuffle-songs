@@ -1,6 +1,7 @@
 package dev.neymoura.android.shufflesongs.presentation.shuffler.viewModel
 
 import android.app.Application
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,8 +11,9 @@ import dev.neymoura.android.songsprovider.usecase.SongsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.reflect.Modifier.PRIVATE
 
-class ShuffleViewModel(
+open class ShuffleViewModel(
     context: Application,
     private val songsUseCase: SongsUseCase
 ) : AndroidViewModel(context) {
@@ -35,7 +37,6 @@ class ShuffleViewModel(
         when {
             songsResult.isSuccess -> {
                 // TODO: Create UI Model
-                // TODO: Post UI Model on its live data
                 _tracks.postValue(songsResult.data)
             }
             songsResult.isFailure -> {

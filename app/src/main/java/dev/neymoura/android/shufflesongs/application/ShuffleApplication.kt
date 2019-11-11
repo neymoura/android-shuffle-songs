@@ -6,7 +6,7 @@ import dev.neymoura.android.shufflesongs.modules.songsProviderModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class ShuffleApplication : Application() {
+open class ShuffleApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

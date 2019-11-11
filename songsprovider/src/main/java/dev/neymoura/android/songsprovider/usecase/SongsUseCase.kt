@@ -1,8 +1,10 @@
 package dev.neymoura.android.songsprovider.usecase
 
+import androidx.annotation.VisibleForTesting
 import dev.neymoura.android.songsprovider.commons.Resource
 import dev.neymoura.android.songsprovider.model.MusicalData
 import dev.neymoura.android.songsprovider.repository.SongsRepository
+import java.lang.reflect.Modifier.PRIVATE
 import kotlin.random.Random
 
 private const val RANDOM_SEED = 571989L
@@ -13,7 +15,7 @@ private const val DEFAULT_TRACKS_LIMIT = 5
 private val default_artists: List<Long> = listOf(909253, 1171421960, 358714030, 1419227, 264111789)
 
 
-class SongsUseCase(private val songsRepository: SongsRepository) {
+open class SongsUseCase(private val songsRepository: SongsRepository) {
 
     /**
      * Recovers the shuffled songs list
@@ -29,7 +31,8 @@ class SongsUseCase(private val songsRepository: SongsRepository) {
     /**
      * Shuffles the songs list without consecutive songs from same artist
      */
-    private fun shuffleSongs(musicalData: Resource<List<MusicalData>>): Resource<List<MusicalData>> {
+    @VisibleForTesting(otherwise = PRIVATE)
+    fun shuffleSongs(musicalData: Resource<List<MusicalData>>): Resource<List<MusicalData>> {
 
         return if (musicalData.isSuccess) {
             musicalData.data?.let { validMusicalData ->
@@ -81,7 +84,8 @@ class SongsUseCase(private val songsRepository: SongsRepository) {
      * @param to function to invoked if Result.isSuccess
      * @return `this` if Result.isFailure or result of `to` if Result.isSuccess
      */
-    private fun <T> Resource<T>.flowTo(to: (Resource<T>) -> Resource<T>): Resource<T> {
+    @VisibleForTesting(otherwise = PRIVATE)
+    fun <T> Resource<T>.flowTo(to: (Resource<T>) -> Resource<T>): Resource<T> {
         return when {
             this.isSuccess -> to.invoke(this)
             else -> this
