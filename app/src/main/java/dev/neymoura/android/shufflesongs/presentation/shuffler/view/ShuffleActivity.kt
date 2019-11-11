@@ -1,6 +1,9 @@
 package dev.neymoura.android.shufflesongs.presentation.shuffler.view
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +27,12 @@ class ShuffleActivity : AppCompatActivity() {
         initViews()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_shuffle, menu)
+        return true
+    }
+
     private fun initViews() {
         tracksList.adapter = tracksAdapter
     }
@@ -42,6 +51,16 @@ class ShuffleActivity : AppCompatActivity() {
 
     private fun setTracks(items: List<MusicalData>) {
         tracksAdapter.items = items
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.shuffleAction -> {
+                viewModel.fetchSongs()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

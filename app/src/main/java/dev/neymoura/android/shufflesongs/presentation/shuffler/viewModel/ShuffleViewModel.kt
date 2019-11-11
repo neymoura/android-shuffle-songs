@@ -24,7 +24,7 @@ class ShuffleViewModel(
     private val _tracks = MutableLiveData<List<MusicalData>>()
     val tracks: LiveData<List<MusicalData>> = _tracks
 
-    private fun fetchSongs() {
+    fun fetchSongs() {
         CoroutineScope(Dispatchers.IO).launch {
             _loading.postValue(true)
             fetchSongsCallback(songsUseCase.fetchSongs())
