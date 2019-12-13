@@ -4,13 +4,14 @@ import dev.neymoura.android.songsprovider.api.LookupApi
 import dev.neymoura.android.songsprovider.commons.Resource
 import dev.neymoura.android.songsprovider.exception.ApiException
 import dev.neymoura.android.songsprovider.model.MusicalData
+import dev.neymoura.android.songsprovider.repository.ISongRepository
 import retrofit2.Retrofit
 
-class SongsRemoteRepository(retrofit: Retrofit) {
+class SongsRemoteRepository(retrofit: Retrofit): ISongRepository {
 
     private val api = retrofit.create(LookupApi::class.java)
 
-    suspend fun fetchSongs(artists: List<Long>, songsLimit: Int): Resource<List<MusicalData>> {
+    override suspend fun fetchSongs(artists: List<Long>, songsLimit: Int): Resource<List<MusicalData>> {
         return try {
             val response = api.lookup(parseArtistIdList(artists), songsLimit)
             if (response.isSuccessful && response.body()?.results != null) {

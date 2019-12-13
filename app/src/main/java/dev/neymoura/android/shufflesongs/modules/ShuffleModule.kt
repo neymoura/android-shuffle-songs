@@ -5,6 +5,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val shuffleModule = module {
-    viewModel { ShuffleViewModel(get(), get()) }
+    viewModel { ShuffleViewModel(get(), get(), get()) }
 }
 

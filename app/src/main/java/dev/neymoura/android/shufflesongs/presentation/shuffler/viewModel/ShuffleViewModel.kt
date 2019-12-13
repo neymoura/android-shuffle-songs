@@ -8,11 +8,11 @@ import dev.neymoura.android.songsprovider.commons.Resource
 import dev.neymoura.android.songsprovider.model.MusicalData
 import dev.neymoura.android.songsprovider.usecase.SongsUseCase
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 open class ShuffleViewModel(
     context: Application,
+    private val coroutineScope: CoroutineScope,
     private val songsUseCase: SongsUseCase
 ) : AndroidViewModel(context) {
 
@@ -25,7 +25,7 @@ open class ShuffleViewModel(
     val tracks: LiveData<List<MusicalData>> = _tracks
 
     fun fetchSongs() {
-        CoroutineScope(Dispatchers.IO).launch {
+        coroutineScope.launch {
             _loading.postValue(true)
             fetchSongsCallback(songsUseCase.fetchSongs())
         }
